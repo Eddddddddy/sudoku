@@ -1,4 +1,3 @@
-package experience9;
 
 import javax.swing.*;
 import java.awt.*;
