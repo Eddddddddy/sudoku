@@ -23,5 +23,19 @@ public class Sudoku_mode {
                 Sudoku_main.switch_difficult(30);
             }
         });
+
+        gui.button_submit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Sudoku_main.submit();
+            }
+        });
+
+        gui.button_answer.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Sudoku_main.print_answer();
+            }
+        });
     }
 }
