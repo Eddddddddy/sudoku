@@ -17,7 +17,7 @@ public class Sudoku_gui {
     JButton button_normal = new JButton("普通");
     JButton button_submit = new JButton("提交");
     JButton button_answer = new JButton("查看答案");
-
+    Font font=new Font("宋体", Font.BOLD, 25);
     public Sudoku_gui() {
         initialization();
     }
@@ -29,12 +29,13 @@ public class Sudoku_gui {
                 panel_array.add(textFields[i][j]);
             }
         }
+
         panel_difficultChoose.add(button_hard);
         panel_difficultChoose.add(button_normal);
         panel_difficultChoose.add(button_easy);
         panel_decide.add(button_submit);
         panel_decide.add(button_answer);
-        panel_array.setLayout(new GridLayout(10, 10));
+        panel_array.setLayout(new GridLayout(9, 9));
         panel.setLayout(new BorderLayout());
         panel_decide.setLayout(new GridLayout(2, 1));
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -50,7 +51,18 @@ public class Sudoku_gui {
         frame.setVisible(true);
         frame.setSize(dim);
         Point point = new Point(300, 200);
-        panel.setLocation(point);
+        frame.setLocation(point);
+        Graphics graphics=frame.getGraphics();
+        paintComponent(graphics);
+        frame.setVisible(true);
+    }
+
+
+
+    protected void paintComponent(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setColor(Color.DARK_GRAY);
+        g2.drawLine(0, 0, 100, 100);
     }
 
     void loadNumber(int seedArray[][], int difficult) {
@@ -58,6 +70,8 @@ public class Sudoku_gui {
         for (int m = 0; m < 9; m++) {
             for (int n = 0; n < 9; n++) {
                 textFields[m][n].setText("");
+                textFields[m][n].setFont(font);
+                textFields[m][n].setHorizontalAlignment(JTextField.CENTER);;
                 textFields[m][n].setEnabled(true);
                 textFields[m][n].setBackground(Color.yellow);
             }
@@ -120,13 +134,14 @@ public class Sudoku_gui {
                 panel_answer.add(textFields[i][j]);
             }
         }
-        panel_answer.setLayout(new GridLayout(10,10));
+        panel_answer.setLayout(new GridLayout(9,9));
         panel.setLayout(new BorderLayout());
         panel.add(panel_answer,BorderLayout.CENTER);
         panel.add(button_OK,BorderLayout.SOUTH);
         panel.setSize(300,300);
         dialog.setSize(300,300);
         dialog.add(panel);
+        dialog.setLocation(300,200);
         dialog.setVisible(true);
         button_OK.addActionListener(new ActionListener() {
             @Override
